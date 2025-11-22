@@ -1,0 +1,30 @@
+{
+  "image_path": "/static/results/3feda337-48d5-4ac5-8a4a-4ca4ac49d318/input.png",
+  "pred_code": 4,
+  "pred_name": "melanoma",
+  "pred_prob": 0.78,
+  "confidence_text": "High",
+  "severity": 2,
+  "severity_label": "High suspicion – urgent check recommended",
+  "cam_top_k": 0.3,
+  "cam_coverage_pct": 82.5,
+  "risk_level": "High",
+  "abcd_index": 7.2,
+  "abcd_level": "High",
+  "abcd_features": {
+    "asymmetry": 2,
+    "border": 2,
+    "color": 2,
+    "diameter_mm": 7.3,
+    "evolution_flag": true,
+    "index": 7.2
+  },
+  "overlays": {
+    "original": "/static/results/3feda337-48d5-4ac5-8a4a-4ca4ac49d318/input.png",
+    "segmentation": "/static/results/3feda337-48d5-4ac5-8a4a-4ca4ac49d318/seg_overlay.png",
+    "gradcam": "/static/results/3feda337-48d5-4ac5-8a4a-4ca4ac49d318/cam_overlay.png",
+    "panel": "/static/results/3feda337-48d5-4ac5-8a4a-4ca4ac49d318/panel.png",
+    "result_json": "/static/results/3feda337-48d5-4ac5-8a4a-4ca4ac49d318/result.json"
+  },
+  "disclaimer": "Tool for research/education only, not a medical diagnosis."
+}
