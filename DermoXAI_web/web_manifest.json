@@ -7,20 +7,20 @@
   },
 
   "download_urls": {
-    "densenet121": "https://drive.google.com/uc?export=download&id=153y8J2sQun9hbXppvXf2evROiHbculAx",
-    "efficientnet_b0": "https://drive.google.com/uc?export=download&id=1coUZIF8nEzZj5DPSrs-fpPKBhLASNjdU",
-    "convnext_tiny": "https://drive.google.com/uc?export=download&id=1lWOP2hRqe0w1WHxWCPUvdvvAWrUAdEOp",
-    "swin_tiny": "https://drive.google.com/uc?export=download&id=1hsGPspn4I7cR_COzNSxytRWbYpMLsdQz"
+    "densenet121": "https://huggingface.co/myhonghanh02/dermoxai-weights/resolve/main/densenet121.pth",
+    "efficientnet_b0": "https://huggingface.co/myhonghanh02/dermoxai-weights/resolve/main/efficientnet-b0.pth",
+    "convnext_tiny": "https://huggingface.co/myhonghanh02/dermoxai-weights/resolve/main/convnext-tiny.pth",
+    "swin_tiny": "https://huggingface.co/myhonghanh02/dermoxai-weights/resolve/main/swin-tiny.pth"
   },
 
   "severity_head": {
     "backbone": "convnext_tiny",
     "ckpt": "weights/severity_head_convnext_tiny.pth",
-    "url": "https://drive.google.com/uc?export=download&id=1opNyAipVm7a84njiIc5tfRtgtnuPtueP"
+    "url": "https://huggingface.co/myhonghanh02/dermoxai-weights/resolve/main/severity_head_convnext_tiny.pth"
   },
 
   "unet": {
     "ckpt": "weights/unet_resnet34_best.pth",
-    "url": "https://drive.google.com/uc?export=download&id=11SCZ2KWo576Lp3oI2xdXzjzAke4MRhGW"
+    "url": "https://huggingface.co/myhonghanh02/dermoxai-weights/resolve/main/unet_resnet34_best.pth"
   }
 }
