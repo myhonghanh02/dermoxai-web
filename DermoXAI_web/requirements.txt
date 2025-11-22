@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-multipart
+pillow
+numpy
+torch
+torchvision
+albumentations
+opencv-python-headless
+scikit-image
+scipy
+matplotlib
+requests
+openai>=1.0.0
