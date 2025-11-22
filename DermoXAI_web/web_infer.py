@@ -63,6 +63,24 @@ IMAGENET_STD = np.array([0.229, 0.224, 0.225], dtype=np.float32)
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+def _safe_load_state_dict(path: Path) -> dict:
+    """
+    Load a state_dict from a checkpoint in a way that is compatible with
+    both older PyTorch (<2.6) and PyTorch 2.6+ where weights_only=True by default.
+    """
+    try:
+        # First try the normal load (works on local env with older torch)
+        return torch.load(path, map_location=DEVICE)
+    except Exception as e:
+        msg = str(e)
+        # On PyTorch 2.6, we may hit the 'weights_only' error → retry with weights_only=False
+        if "weights_only" in msg or "Weights only load failed" in msg:
+            print(f"[INFO] Retrying torch.load with weights_only=False for {path}")
+            return torch.load(path, map_location=DEVICE, weights_only=False)
+        # Otherwise, re-raise
+        raise
+
+
 # === PRIOR BIAS CORRECTION (tối ưu từ confusion matrix) ===============
 # Order: [akiec, bcc, bkl, df, nv, mel, vasc]
 # - Giảm mạnh nevus.
@@ -219,7 +237,7 @@ def setup_models(
             print(f"[WARN] Checkpoint for {name} not found at {ckpt_path}")
             continue
         model = _build_model(name, num_classes=len(CLASS_ORDER)).to(DEVICE)
-        state = torch.load(ckpt_path, map_location=DEVICE)
+        state = _safe_load_state_dict(ckpt_path)
         model.load_state_dict(state, strict=False)
         model.eval()
         models[name] = model
@@ -230,7 +248,7 @@ def setup_models(
         sev_path = _resolve_ckpt_path(severity_ckpt)
         if sev_path.exists():
             sev_model = SeverityHead(severity_backbone).to(DEVICE)
-            sev_state = torch.load(sev_path, map_location=DEVICE)
+            sev_state = _safe_load_state_dict(sev_path)
             sev_model.load_state_dict(sev_state, strict=False)
             sev_model.eval()
             print(f"[INIT] Loaded severity head from {sev_path}")
